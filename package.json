@@ -2,11 +2,14 @@
   "name": "react-elements-pagination",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://lako90.github.io/react-elements-pagination/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "lodash": "^4.17.4",
@@ -22,6 +25,7 @@
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^5.0.0",
-    "eslint-plugin-react": "^7.4.0"
+    "eslint-plugin-react": "^7.4.0",
+    "gh-pages": "^1.0.0"
   }
 }
