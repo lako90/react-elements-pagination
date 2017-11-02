@@ -85,7 +85,7 @@ class Elements extends Component {
     const { listedElements } = this.state;
 
     return concat(listedElements, {
-      label: 'Altro..',
+      label: 'Show more..',
       type: 'other-button',
     }).map(this.renderButton);
   }
