@@ -13,8 +13,7 @@ class App extends Component {
     };
   }
 
-  createMockElements = () => {
-    const { numberElements } = this.state;
+  createMockElements = (numberElements = this.state.numberElements) => {
     const elements = [];
 
     for (let i = 0; i < numberElements; i += 1) {
@@ -27,6 +26,22 @@ class App extends Component {
     return elements;
   }
 
+  handleInputChange = (item) => {
+    const newState = {};
+
+    newState[item] = this[item].value;
+    this.setState(newState);
+  }
+
+  renderInputNumberElements = () => (
+    <input
+      className="Input-elements"
+      ref={(ref) => { this.numberElements = ref; }}
+      onChange={() => this.handleInputChange('numberElements')}
+      value={this.state.numberElements}
+    />
+  )
+
   renderButtons = () => (
     this.createMockElements().map(({ type, label }) => (
       <Button key={`${type}-${label}`} label={label} type={type} />
@@ -35,6 +50,7 @@ class App extends Component {
 
   render() {
     const { numberElements } = this.state;
+    const elements = this.createMockElements(numberElements);
 
     return (
       <div className="App">
@@ -42,11 +58,13 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <p className="App-intro">
-          {`We have ${numberElements} elements to pass into Elements Component`}
+          {'We have '}
+          {this.renderInputNumberElements()}
+          {' elements to pass into Elements Componen'}
         </p>
         <div className="Buttons-container">{this.renderButtons()}</div>
         <div>
-          <Elements elements={this.createMockElements()} />
+          <Elements elements={elements} />
         </div>
       </div>
     );

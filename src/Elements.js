@@ -27,11 +27,24 @@ class Elements extends Component {
   }
 
   componentWillMount() {
+    this.initElements(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props !== nextProps) {
+      this.initElements(nextProps);
+    }
+  }
+
+  initElements({ elements, limit }) {
     /* Set initial elements division */
-    const { elements, limit } = this.props;
 
     if (elements.length <= limit + 1) {
-      this.setState({ listedElements: elements });
+      this.setState({
+        indexElements: 0,
+        listedElements: elements,
+        othersElements: [],
+      });
     } else {
       this.setState({
         indexElements: limit,
