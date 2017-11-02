@@ -27,16 +27,20 @@ class Elements extends Component {
   }
 
   componentWillMount() {
-    this.initElements(this.props);
+    const { elements, limit } = this.props;
+
+    this.initElements(elements, limit);
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props !== nextProps) {
-      this.initElements(nextProps);
+      const { elements, limit } = nextProps;
+
+      this.initElements(elements, limit);
     }
   }
 
-  initElements({ elements, limit }) {
+  initElements(elements, limit) {
     /* Set initial elements division */
 
     if (elements.length <= limit + 1) {
